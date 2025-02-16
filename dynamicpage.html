@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic Webpage</title>
+    <style>
+        body {
+            font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color:lightpink;
+            text-align: center;
+        }
+       
+        .container {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            width: 100%;
+        }
+
+        .row {
+            display: flex;
+            gap: 20px;
+            width: 100%;
+        }
+        
+        .section {
+            background-color:dodgerblue;
+            color: white;
+            width: 45%;
+            padding: 25px;
+            margin: 10px;
+            border-radius: 10px;
+            border: 3px solid white;
+            text-align: center;
+        }
+        
+        input {
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body> 
+    <h1 id="heading">INST377: Lab 4</h1>
+
+    <div class="container">
+        <div class="row">    
+            <div class="section">
+                <form onsubmit="alertName()">
+                    <label for="name">Name:</label>
+                    <input type="text" id="name" required>
+                    <button type="submit">Alert Me!</button>
+                </form>
+            </div>
+        
+            <div class="section">
+                <button onclick="changeColor()">Change Color</button>
+            </div>    
+        </div>
+
+        <div class="row">
+            <div class="section">
+                <form onsubmit="validateText()">
+                    <label for="textInput">Text Tester:</label>
+                    <input type="text" id="textInput">
+                    <button type="submit">Validate Text</button>
+                </form>
+            </div>
+        
+            <div class="section">
+                <button onclick="addText()">Add Text</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function alertName() {
+            let name = document.getElementById("name").value;
+            alert("Hey " + name + "!"); 
+        }
+
+        function changeColor() {
+            let body = document.body;
+            if (!body.style.backgroundColor) {
+                body.style.backgroundColor = "lightpink";
+            }
+            if (body.style.backgroundColor == "lightpink") {
+                    body.style.backgroundColor = "lightgreen";    
+            } else {
+                body.style.backgroundColor = "lightpink"
+            }
+        }
+
+        function validateText() {
+            let text = document.getElementById("textInput").value;
+            let validation = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/;
+            if (validation.test(text)) {
+                alert("Invalid text! Special characters are not allowed!");
+            } else {
+                alert("Text is valid!");
+            }
+        }
+
+        function addText() {
+            let heading = document.getElementById("heading");
+            heading.textContent += " - Add Text";
+        }
+    </script> 
+</body>
+</html>
